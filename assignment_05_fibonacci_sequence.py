@@ -49,3 +49,47 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+def make_fib_list(n_terms):
+    if n_terms <= 0:
+        return []
+    if n_terms == 1:
+        return [0]
+    
+    seq = [0, 1]
+    for _ in range(2, n_terms):
+        seq.append(seq[-1] + seq[-2])
+    return seq
+
+def check_if_fib(target):
+    if target < 0:
+        return False
+    a, b = 0, 1
+    while a < target:
+        a, b = b, a + b
+    return a == target
+
+def main():
+    try:
+        n = int(input("How many terms? "))
+        if n <= 0:
+            print("Error: N must be a positive integer.")
+        else:
+            fib_series = make_fib_list(n)
+            print("Fibonacci sequence:", " ".join(str(x) for x in fib_series))
+    except ValueError:
+        print("Error: N must be a positive integer.")
+
+    print()
+
+    try:
+        val = int(input("Enter a number to check: "))
+        if check_if_fib(val):
+            print(f"{val} is a Fibonacci number.")
+        else:
+            print(f"{val} is NOT a Fibonacci number.")
+    except ValueError:
+        print("Error: Please enter a valid integer.")
+
+if __name__ == "__main__":
+    main()
